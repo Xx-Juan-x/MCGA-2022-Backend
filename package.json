@@ -1,7 +1,6 @@
 {
   "name": "ejercicios_javascript",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +13,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xx-Juan-x/MCGA-2022-Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Xx-Juan-x/MCGA-2022-Backend/issues"
+  },
+  "homepage": "https://github.com/Xx-Juan-x/MCGA-2022-Backend#readme",
+  "description": ""
 }
