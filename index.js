@@ -63,22 +63,39 @@ const empresas = [
 console*/
 
 const { json } = require('body-parser');
-const { profileEnd } = require('console');
+const { profileEnd, Console, error } = require('console');
 const express = require('express');
 const fs = require('fs');
 const products = require('./data/MOCK_DATA.json')
 const app = express();
+const mongoose = require('mongoose');
+
+const router = require('./router');
+
+
+app.use(express.json());
+app.use(router);
+
+app.get('/',(req, res)=>{
+    res.send(200, "Bienvenido al servidor");
+})
+
+mongoose.connect('mongodb+srv://Juan:Juan@cluster0.kmpcmvf.mongodb.net/?retryWrites=true&w=majority')
+.then(
+    app.listen(()=>{
+        console.log('DB OK');
+        app.listen(PORT, () => console.log('Server OK'))
+    })
+)
+.catch((error)=> console.log("DB Failed" + error))
+
 const PORT = 3000;
 
 //console.log(products);
 
-app.use(express.json());
-
 // Envío un mensaje al server
 // El 200 indica que está succes con el servidor
-app.get('/',(req, res)=>{
-res.send(200, "Bienvenido al servidor");
-})
+/*
 
 //Dato que viene del servidor, por eso trabajo con el req
 app.get('/products/name/:name', (req, res)=>{
@@ -134,7 +151,7 @@ app.delete('/products/delete/:id', (req, res) => {
     res.status(200).json({message: "Product deleted"});
 })
 
-/*app.delete('/products/delete/:name', (req, res) => {
+app.delete('/products/delete/:name', (req, res) => {
     const productName = req.params.name;
     const filteredProducts = products.filter(product => product.name.includes(productName));
 
@@ -150,10 +167,10 @@ app.delete('/products/delete/:id', (req, res) => {
         if(error) res.status(500).json({message: 'internal error'})
     })
     res.status(200).json({message: "Product deleted"});
-})*/
+})
 
 //Arranca nuestro servidor api
 app.listen(PORT, () =>{
     console.log('OK');
-})
+})*/
 
