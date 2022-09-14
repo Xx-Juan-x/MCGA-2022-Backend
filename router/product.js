@@ -3,7 +3,7 @@ const products = require('../schemes/product');
 
 router.get('/', (req, res) =>{
     products.find({isDeleted: false})
-    .then(data => res.json(data))
+    .then(data => res.status(200).json(data))
     .catch(error => res.status(500).json({mensaje: error}))
 })
 
@@ -23,9 +23,8 @@ router.post('/add', (req, res) => {
     const newProducts = new products(req.body);
     newProducts
     .save()
-    .then(data => res.status(200).json({mensaje: "Producto creado", data}))
+    .then(data => res.status(201).json({mensaje: "Producto creado", data}))
     .catch(() => res.status(500).json({mensaje: "Error"}));
-    
 })
 
 module.exports = router;
